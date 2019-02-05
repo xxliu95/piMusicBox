@@ -1,0 +1,37 @@
+/*
+ * single_led_tecla.c
+ *
+ * Este programa enciende un led (pin4) solo si esta pulsada 
+ * una tecla (pin 5)
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <wiringPi.h>// incluyo la libreria wiringPi
+
+
+int main  () {
+
+	wiringPiSetupGpio(); // con pins de gpio
+
+// 0 es salida
+
+	pinMode (4, OUTPUT) ; // declaro pin 4 como salida
+	pinMode (0, OUTPUT) ; // declaro pin 0 como salida para excitar columna 1
+	pinMode (5, INPUT) ; // declaro el pin 5 (fila cero) como entrada
+
+	digitalWrite (0,HIGH); //escribo un "1" en columna cero
+	
+		while (1){
+	    	if (digitalRead (5)== 1){  //leo la entrada del pin 5
+	    		digitalWrite (4,HIGH);  //escribo un "1" en la salida 4
+	    	}
+	    	else {
+	    		digitalWrite (4,LOW);
+	    		}
+		}
+	  return 0;
+}
+
+
+

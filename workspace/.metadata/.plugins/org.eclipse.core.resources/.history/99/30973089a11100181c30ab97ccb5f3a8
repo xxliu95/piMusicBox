@@ -1,0 +1,86 @@
+/*------------------------------------------------------
+// char teclado(void)
+//
+// Descripción:
+//   Explora el teclado matricial y devuelve la tecla
+//   pulsada
+//------------------------------------------------------
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <wiringPi.h>
+
+
+// incluyo cosas de la wiringpi.c
+
+#define NUM_FILAS 4
+#define NUM_COLS 4
+#define EXCIT 1
+
+void main (void)
+{
+
+	int fila, columna;
+
+	static char teclas[4][4] = {{"123C"},
+	                              {"456D"},
+	                              {"789E"},
+	                              {"A0BF"}};
+
+
+	wiringPiSetupGpio(); // con pins de gpio
+
+	// 0,1,2,3 son salidas, columnas 1,2,3,4 respectivamente
+	pinMode (0, OUTPUT) ;
+	pinMode (1, OUTPUT) ;
+	pinMode (2, OUTPUT) ;
+	pinMode (3, OUTPUT) ;
+
+	// ahora vienen las entradas de las filas 1,2,3,4
+	pinMode (5,INPUT);
+	pinMode (6,INPUT);
+	pinMode (12,INPUT);
+	pinMode (13,INPUT);
+	int filas [4]={5,6,12,13};
+
+	// mapping de filas a pines
+
+	// pongo alternativamente 0 y 1 en cada una de las salidas
+
+	// la idea es excito filas y leo columnas 
+
+	 // Bucle de exploración del teclado
+	  while(1){
+
+	    // Excitamos una columna
+	    for(columna = 0; columna < NUM_COLS; columna++)
+	    {
+	    digitalWrite (columna,HIGH);		// Se envía un 1 a le columna
+	    delay (100);				// Esperamos respuesta de optoacopladores
+
+	    //printf ("columna %i fila %i \n",columna,j);
+	      // Exploramos las filas en busca de respuesta
+	      for(fila = 0; fila < NUM_FILAS; fila++)
+	      {
+	        	if(digitalRead (filas [fila])== 1)
+	        	{		// Si encuentra tecla pulsada,
+	        		while(digitalRead (filas [fila]) == 1);	//   Esperamos a que se suelte
+	        		delay (100);//  Una vez que se ha soltado esperamos retardo
+
+	        		printf (" tecla pulsada es %c", teclas[fila][columna]);
+	        		fflush(stdout);//   Devolvemos la tecla pulsada
+	        	}
+	      }
+	      digitalWrite (columna,LOW);		// Se envía un 0 a la columna para que no quede en 1
+	      // Siguiente columna
+	    }
+	    // Exploración finalizada sin encontrar una tecla pulsada
+}
+
+	  return ;
+
+}
+
+
+

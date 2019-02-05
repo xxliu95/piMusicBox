@@ -1,0 +1,20 @@
+18:07:03 **** Incremental Build of configuration Debug for project piMusicBox_1 ****
+make all 
+'Building file: ../mfrc522_hal_linux.c'
+'Invoking: Cross GCC Compiler'
+arm-linux-gnueabihf-gcc -I"C:\SysGCC\Raspberry\include" -I"C:\SysGCC\Raspberry\include\wiringPi" -O0 -g3 -Wall -Werror -c -fmessage-length=0 -MMD -MP -MF"mfrc522_hal_linux.d" -MT"mfrc522_hal_linux.o" -o "mfrc522_hal_linux.o" "../mfrc522_hal_linux.c"
+'Finished building: ../mfrc522_hal_linux.c'
+' '
+'Building file: ../piMusicBox_1.c'
+'Invoking: Cross GCC Compiler'
+arm-linux-gnueabihf-gcc -I"C:\SysGCC\Raspberry\include" -I"C:\SysGCC\Raspberry\include\wiringPi" -O0 -g3 -Wall -Werror -c -fmessage-length=0 -MMD -MP -MF"piMusicBox_1.d" -MT"piMusicBox_1.o" -o "piMusicBox_1.o" "../piMusicBox_1.c"
+'Finished building: ../piMusicBox_1.c'
+' '
+'Building target: piMusicBox_1'
+'Invoking: Cross GCC Linker'
+arm-linux-gnueabihf-gcc -L"C:\SysGCC\Raspberry\lib" -o "piMusicBox_1"  ./fsm.o ./kbhit.o ./mfrc522.o ./mfrc522_hal_linux.o ./piMusicBox_1.o ./rfid.o ./tmr.o   -lwiringPi -lrt
+'Finished building target: piMusicBox_1'
+' '
+18:07:05 **** Incremental Build of configuration Debug for project piMusicBox_1 ****
+make all 
+make: Nothing to be done for `all'.

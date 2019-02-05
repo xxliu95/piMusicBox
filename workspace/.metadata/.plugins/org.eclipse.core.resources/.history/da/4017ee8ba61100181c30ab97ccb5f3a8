@@ -1,0 +1,50 @@
+/*
+ * cochefantastico.c
+ *
+ * Enciende luces secuencialmente a la
+ * manera del coche fantástico de la 
+ * serie de televiisón
+ *
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <wiringPi.h>// incluyo la libreria wiringPi
+
+int main  () {
+
+	int i=0;
+	int j;
+
+	wiringPiSetupGpio(); // con pins de gpio
+
+// 0,1,2,3 son salidas
+	pinMode (0, OUTPUT) ;
+	pinMode (1, OUTPUT) ;
+	pinMode (2, OUTPUT) ;
+	pinMode (3, OUTPUT) ;
+
+	// pongo alternativamente 0 y 1 en cada una de las salidas
+	    for (i=1;i<100;i++)
+	    {
+	    	for (j=0;j<4;j++)
+	    	{
+	    	digitalWrite (j,HIGH);
+	    	delay (200);
+	    	digitalWrite (j,LOW);
+	    	delay (200);
+	    	}
+	    	for (j=2;j>0;j--)
+	    	{
+	    	digitalWrite (j,HIGH);
+	    	delay (200);
+	    	digitalWrite (j,LOW);
+	    	delay (200);
+	    	}
+	    }
+	  return 0;
+}
+
+
+

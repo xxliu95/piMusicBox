@@ -1,0 +1,37 @@
+/*
+ * single_led.c
+ *
+ * Este programa enciende y apaga un Led 100 veces 
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <wiringPi.h>// incluyo la libreria wiringPi
+
+
+int main  () {
+
+	int i=0;
+
+
+	wiringPiSetupGpio(); // con pins de BCM 2835
+	
+
+	pinMode (0, OUTPUT) ; // declaro pin 0 como salida
+
+
+	// pongo alternativamente 0 y 1 en cada una de las salidas
+	    for (i=1;i<100;i++)
+	    {
+	    	digitalWrite (0,HIGH); //escribo un "1"
+	    	delay (100);
+	    	digitalWrite (0,LOW);  // escribo un "0"
+	    	delay (100);
+	    }
+
+	  return 0;
+}
+
+
+
