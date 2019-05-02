@@ -1,6 +1,8 @@
 # piMusicBox
 ## Music box with raspberryPi using RFID cards
 
+Este es un proyecto que hice con <a href="https://github.com/GONZALOCAPILLAPAREDES">Gonzalo</a> en 3º de carrera en una asignatura llamada Sistemas digitales 2.
+
 El sistema detecta tarjetas RFID y dependiendo de la tarjeta reproduce una melodía u otra.
 Se ha usado un RaspberryPi con la distribución Raspibian de Linux, con código en C. Con las bibliotecas de wiringPi y softTone.
 
